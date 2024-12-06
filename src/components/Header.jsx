@@ -22,7 +22,7 @@ const Header = () => {
 
   return (
     <AppBar
-      position="fixed"
+      position={scrolled ? "fixed" : "static"}
       sx={{
         backgroundColor: "white",
         boxShadow: scrolled ? "0 2px 10px rgba(0, 0, 0, 0.1)" : "none",

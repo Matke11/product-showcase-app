@@ -50,13 +50,9 @@ const IconsComponent = ({ icon, size = "24px", alt = "icon" }) => {
   };
 
   return (
-    <div>
-      <img
-        src={renderIcon()}
-        alt={alt}
-        style={{ width: size, height: size, margin: "0 10px" }}
-      />
-    </div>
+    <span>
+      <img src={renderIcon()} alt={alt} style={{ width: size, height: size }} />
+    </span>
   );
 };
 
