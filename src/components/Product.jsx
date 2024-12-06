@@ -2,6 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid2";
 import ProductBasicInformation from "./ProductBasicInformation";
+import ProductDescription from "./ProductDescription";
 
 const Product = () => {
   return (
@@ -11,7 +12,6 @@ const Product = () => {
         spacing={2}
         sx={{
           backgroundColor: "white",
-          padding: "40px 0",
         }}
       >
         <Grid size={{ xs: 6, md: 5 }}>
@@ -22,9 +22,7 @@ const Product = () => {
         </Grid>
       </Grid>
       <Grid container spacing={2}>
-        <Grid size={{ xs: 12, md: 12 }}>
-          <p>Milan</p>
-        </Grid>
+        <ProductDescription />
       </Grid>
       <Grid container spacing={2}>
         <Grid size={{ xs: 6, md: 6 }}>

@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 
 const ProductBasicInformation = () => {
   return (
-    <Box>
+    <Box component="section" sx={{ p: 3 }}>
       <Stack spacing={2}>
         <div>
           <p>Lorem Ipsum Dolor Sit Amet 4552</p>
