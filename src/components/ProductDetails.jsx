@@ -15,15 +15,16 @@ const FeatureList = ({ features }) => {
       <Typography sx={{ color: "text.secondary", mb: "0" }}>
         Features
       </Typography>
-      <ul>
+      <List>
         {Object.entries(features).map(([key, value]) => (
           <li key={key}>
+            &#x2022;
             <Typography sx={{ color: "text.secondary", mb: "0" }}>
               {key}: {value}
             </Typography>
           </li>
         ))}
-      </ul>
+      </List>
     </div>
   );
 };
