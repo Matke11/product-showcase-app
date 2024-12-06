@@ -3,8 +3,11 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid2";
 import ProductBasicInformation from "./ProductBasicInformation";
 import ProductDescription from "./ProductDescription";
+import ProductDetails from "./ProductDetails";
+import ProductInformationCards from "./ProductInformationCards";
 
-const Product = () => {
+const Product = ({ data }) => {
+  console.log(data);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid
@@ -26,10 +29,18 @@ const Product = () => {
       </Grid>
       <Grid container spacing={2}>
         <Grid size={{ xs: 6, md: 6 }}>
-          <p>Milan</p>
+          <ProductInformationCards title="Details">
+            <ProductDetails
+              features={data.features}
+              attachments={data.attachments}
+              keywords={data.keywords}
+            />
+          </ProductInformationCards>
         </Grid>
         <Grid size={{ xs: 6, md: 6 }}>
-          <p>Matic</p>
+          <ProductInformationCards title="Price & Shipping">
+            {/* <ProductDetails /> */}
+          </ProductInformationCards>
         </Grid>
       </Grid>
     </Box>

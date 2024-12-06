@@ -38,7 +38,8 @@ const Header = () => {
         }}
       >
         <Typography variant="h6" component="div" sx={{ color: "black" }}>
-          Lorem Ipsum Dolor Sit Amet 4552
+          Lorem Ipsum Dolor Sit Amet 4552 laboris nisi ut aliquip ex ea commodo
+          consequat
         </Typography>
 
         <Box sx={{ display: "flex", alignItems: "center" }}>
