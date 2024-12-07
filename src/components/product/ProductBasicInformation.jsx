@@ -7,6 +7,7 @@ import AddToCart from "./AddToCartForm";
 import Typography from "@mui/material/Typography";
 import { formatPrice } from "../../utils/formatters";
 import { useTheme } from "@mui/material/styles";
+import { Rating } from "@mui/material";
 
 const ProductTitle = ({ productTitle, supplierLink, supplierName }) => {
   const theme = useTheme();
@@ -45,14 +46,17 @@ const ProductTitle = ({ productTitle, supplierLink, supplierName }) => {
   );
 };
 
-const Rating = ({ stars }) => (
+const ProductRating = ({ stars }) => (
   <Box>
     <Grid container spacing={1}>
-      <IconsComponent icon="star" />
-      <IconsComponent icon="star" />
-      <IconsComponent icon="star" />
-      <IconsComponent icon="star" />
-      <IconsComponent icon="star" />
+      <Rating
+        name="customized-rating"
+        value={stars}
+        icon={<IconsComponent icon="star-filled" size="18px" />}
+        emptyIcon={<IconsComponent icon="star" size="18px" />}
+        sx={{ color: "#ff6d75" }}
+        readOnly
+      />
     </Grid>
   </Box>
 );
@@ -103,7 +107,7 @@ const ProductBasicInformation = ({
           supplierLink={supplierLink}
           supplierName={supplierName}
         />
-        <Rating stars={stars} />
+        <ProductRating stars={stars} />
         <ProductPrice
           price={price}
           currency={currency}

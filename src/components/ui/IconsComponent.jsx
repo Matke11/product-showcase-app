@@ -1,6 +1,11 @@
 import React from "react";
 
-const IconsComponent = ({ icon, size = "24px", alt = "icon" }) => {
+const IconsComponent = ({
+  icon,
+  size = "24px",
+  alt = "icon",
+  color = "inherit",
+}) => {
   const renderIcon = () => {
     let iconPath;
     switch (icon) {
@@ -50,8 +55,17 @@ const IconsComponent = ({ icon, size = "24px", alt = "icon" }) => {
   };
 
   return (
-    <span style={{ lineHeight: "0" }}>
-      <img src={renderIcon()} alt={alt} style={{ width: size, height: size }} />
+    <span style={{ lineHeight: "0", filter: `hue-rotate(${color})` }}>
+      <img
+        src={renderIcon()}
+        alt={alt}
+        style={{
+          width: size,
+          height: size,
+          fill: color,
+          color: color,
+        }}
+      />
     </span>
   );
 };
