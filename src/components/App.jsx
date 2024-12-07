@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./layouts/Header";
+import Header from "./layouts/header/Header";
 import Product from "./product/Product";
 import data from "../data/data.json";
 

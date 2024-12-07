@@ -8,7 +8,6 @@ import ProductPricingAndShipping from "./ProductPricingAndShipping";
 import Container from "@mui/material/Container";
 
 const Product = ({ data }) => {
-  console.log(data);
   return (
     <>
       <Container sx={{ mt: "150px" }} maxWidth="xl">
@@ -27,7 +26,6 @@ const Product = ({ data }) => {
               productTitle={data.title}
               currency={data.currency}
               unit={data.unit}
-              images={data.images}
               price={data.price}
               stars={data.stars}
               supplierLink={data.supplier_link}

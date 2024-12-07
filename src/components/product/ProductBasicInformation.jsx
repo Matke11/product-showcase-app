@@ -9,7 +9,6 @@ const ProductBasicInformation = ({
   productTitle,
   currency,
   unit,
-  images,
   price,
   stars,
   supplierLink,
