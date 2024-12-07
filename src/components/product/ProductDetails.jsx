@@ -5,7 +5,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import IconsComponent from "./ui/IconsComponent";
+import IconsComponent from "../ui/IconsComponent";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 

@@ -12,12 +12,13 @@ const ProductPricingAndShipping = ({
   shippingCost,
   deliveryTime,
   currency,
+  unit,
 }) => {
   return (
     <Box component="section">
       <Box>
         <Typography sx={{ color: "text.secondary", mb: "0" }}>
-          &#x2022; Minimum order: {minimumOrder} PCE
+          &#x2022; Minimum order: {minimumOrder} {unit}
         </Typography>
         <Typography sx={{ color: "text.secondary", mb: "0" }}>
           &#x2022; Shipping: {shippingCost} {currency}
@@ -36,8 +37,8 @@ const ProductPricingAndShipping = ({
             return (
               <div key={quantity}>
                 <ListItem disablePadding>
-                  <ListItemText primary={`ex ${quantity} PCE`} />
-                  <ListItemText primary={`${unitPrice} EUR/PCE`} />
+                  <ListItemText primary={`ex ${quantity} ${unit}`} />
+                  <ListItemText primary={`${unitPrice} ${currency}/${unit}`} />
                 </ListItem>
                 <Divider />
               </div>
