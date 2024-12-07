@@ -4,6 +4,85 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid2";
 import Stack from "@mui/material/Stack";
 import AddToCart from "./AddToCartForm";
+import Typography from "@mui/material/Typography";
+import { formatPrice } from "../../utils/formatters";
+import { useTheme } from "@mui/material/styles";
+
+const ProductTitle = ({ productTitle, supplierLink, supplierName }) => {
+  const theme = useTheme();
+  return (
+    <Box>
+      <Typography
+        variant="h5"
+        sx={{
+          fontWeight: 500,
+          fontSize: "1rem",
+        }}
+      >
+        {productTitle}
+      </Typography>
+      <Typography
+        variant="body2"
+        component="span"
+        sx={{
+          color: "gray",
+        }}
+      >
+        by{" "}
+        <a
+          href={supplierLink}
+          target="_blank"
+          style={{
+            color: theme.palette.secondary.main, // Use theme's secondary color
+            textDecoration: "none",
+            fontSize: "0.75rem",
+          }}
+        >
+          {supplierName}
+        </a>
+      </Typography>
+    </Box>
+  );
+};
+
+const Rating = ({ stars }) => (
+  <Box>
+    <Grid container spacing={1}>
+      <IconsComponent icon="star" />
+      <IconsComponent icon="star" />
+      <IconsComponent icon="star" />
+      <IconsComponent icon="star" />
+      <IconsComponent icon="star" />
+    </Grid>
+  </Box>
+);
+
+const ProductPrice = ({ price, currency, vatPercent, transportCosts }) => (
+  <Box>
+    <Typography
+      variant="body1"
+      sx={{
+        fontSize: "1rem",
+        fontWeight: 500,
+        display: "inline",
+      }}
+    >
+      {formatPrice(price)} {currency}
+    </Typography>{" "}
+    <Typography
+      variant="body2"
+      sx={{
+        fontSize: "0.9rem",
+        color: "gray",
+        display: "inline",
+      }}
+    >
+      + {formatPrice(transportCosts)} {currency} shipping{" "}
+      <IconsComponent icon="discount" size="18px" /> all prices incl.{" "}
+      {vatPercent}% taxes
+    </Typography>
+  </Box>
+);
 
 const ProductBasicInformation = ({
   productTitle,
@@ -16,41 +95,21 @@ const ProductBasicInformation = ({
   transportCosts,
   vatPercent,
 }) => {
-  const formatPrice = (priceToFormat) => {
-    return new Intl.NumberFormat("de-DE", {
-      style: "decimal",
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(priceToFormat);
-  };
   return (
     <Box component="section" sx={{ p: 3 }}>
       <Stack spacing={2}>
-        <div>
-          <p>{productTitle}</p>
-          <span>
-            by <a href={supplierLink}>{supplierName}</a>
-          </span>
-        </div>
-        <div>
-          <Grid container spacing={1}>
-            <IconsComponent icon="star" />
-            <IconsComponent icon="star" />
-            <IconsComponent icon="star" />
-            <IconsComponent icon="star" />
-            <IconsComponent icon="star" />
-          </Grid>
-        </div>
-        <div>
-          <p>
-            {formatPrice(price)} {currency}{" "}
-            <span>
-              + {transportCosts.toFixed(2)} {currency} shipping{" "}
-              <IconsComponent icon="discount" /> all prices incl. {vatPercent}%
-              taxes
-            </span>
-          </p>
-        </div>
+        <ProductTitle
+          productTitle={productTitle}
+          supplierLink={supplierLink}
+          supplierName={supplierName}
+        />
+        <Rating stars={stars} />
+        <ProductPrice
+          price={price}
+          currency={currency}
+          vatPercent={vatPercent}
+          transportCosts={transportCosts}
+        />
 
         <Grid container alignItems="center">
           <AddToCart unit={unit} />

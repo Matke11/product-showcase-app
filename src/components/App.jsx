@@ -2,6 +2,18 @@ import React from "react";
 import Header from "./layouts/header/Header";
 import Product from "./product/Product";
 import data from "../data/data.json";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#f44336",
+    },
+    secondary: {
+      main: "#9500ae",
+    },
+  },
+});
 
 function App() {
   const articleData = data.article;
@@ -9,14 +21,14 @@ function App() {
   const userData = data.user;
   const productTitle = articleData.title;
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <Header
         productTitle={productTitle}
         cartData={cartData}
         userData={userData}
       />
       <Product data={articleData} />
-    </div>
+    </ThemeProvider>
   );
 }
 
