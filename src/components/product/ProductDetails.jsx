@@ -20,7 +20,7 @@ const AttachmentsList = ({ attachments }) => {
         <List
           disablePadding
           sx={{
-            "& .MuiListItem-root": { paddingY: 0.5 }, // Adjust spacing between items
+            "& .MuiListItem-root": { paddingY: 0.5 },
           }}
         >
           {attachments.map((attachment, index) => (

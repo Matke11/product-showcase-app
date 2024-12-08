@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Divider, { dividerClasses } from "@mui/material/Divider";
 import AddToCart from "../../product/AddToCartForm";
 import IconsComponent from "../../ui/IconsComponent";
 import Badge from "@mui/material/Badge";
+import { useCartContext } from "../../context/CartContext";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -12,10 +13,16 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     minWidth: "15px",
     fontSize: "0.65rem",
     height: "15px",
+    transition: "transform 0.3s ease-in-out",
+  },
+  "& .MuiBadge-badge.animate": {
+    transform: "scale(1.5)",
   },
 }));
 
-const HeaderActions = ({ cart, user }) => {
+const HeaderActions = ({ user }) => {
+  const { cartData, animate } = useCartContext();
+
   return (
     <Box
       sx={{
@@ -50,7 +57,13 @@ const HeaderActions = ({ cart, user }) => {
       </Box>
       <Divider orientation="vertical" flexItem />
       <Box>
-        <StyledBadge badgeContent={cart.items} color="primary">
+        <StyledBadge
+          badgeContent={cartData.items}
+          color="primary"
+          classes={{
+            badge: animate ? "MuiBadge-badge animate" : "MuiBadge-badge",
+          }}
+        >
           <IconsComponent icon="cart" size="18px" />
         </StyledBadge>
       </Box>

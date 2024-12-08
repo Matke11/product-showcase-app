@@ -5,6 +5,7 @@ import IconsComponent from "../ui/IconsComponent";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { useCartContext } from "../context/CartContext";
 
 const StyledTextField = styled(TextField)({
   "& .MuiInputBase-input": {
@@ -13,11 +14,11 @@ const StyledTextField = styled(TextField)({
     padding: "0 8px",
     textAlign: "center",
     fontSize: "14px",
-    "-moz-appearance": "textfield",
+    MozAppearance: "textfield",
   },
   "& input[type=number]": {
-    "-webkit-appearance": "none",
-    "-moz-appearance": "textfield",
+    WebkitAppearance: "none",
+    MozAppearance: "textfield",
     appearance: "textfield",
   },
 });
@@ -31,12 +32,15 @@ const StyledAddCartButton = styled(Button)(({ theme }) => ({
 }));
 
 const AddToCart = ({ unit = "PCE" }) => {
+  const { quantity, handleAddToCart, updateQuantity } = useCartContext();
+
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
       <StyledTextField
         id="outlined-number"
         type="number"
-        defaultValue={1}
+        value={quantity}
+        onChange={(e) => updateQuantity(e.target.value)}
         sx={{
           marginRight: "10px",
         }}
@@ -49,7 +53,7 @@ const AddToCart = ({ unit = "PCE" }) => {
       >
         {unit}
       </Typography>
-      <StyledAddCartButton>
+      <StyledAddCartButton onClick={handleAddToCart}>
         <IconsComponent icon="add" size="20px" color="white" />
         Add to cart
       </StyledAddCartButton>

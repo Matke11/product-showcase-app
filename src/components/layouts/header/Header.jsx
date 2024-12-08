@@ -15,7 +15,7 @@ const ElevationScroll = ({ children }) => {
   });
 };
 
-const Header = ({ productTitle, cartData, userData }) => {
+const Header = ({ userData, productTitle }) => {
   return (
     <>
       <CssBaseline />
@@ -38,7 +38,7 @@ const Header = ({ productTitle, cartData, userData }) => {
               {productTitle}
             </Typography>
 
-            <HeaderActions cart={cartData} user={userData} />
+            <HeaderActions user={userData} />
           </Toolbar>
         </AppBar>
       </ElevationScroll>

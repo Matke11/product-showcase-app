@@ -64,7 +64,6 @@ const ProductRating = ({ stars }) => (
         emptyIcon={
           <IconsComponent icon="star-filled" size="18px" color="divider" />
         }
-        sx={{ color: "#ff6d75" }}
         readOnly
       />
     </Grid>
