@@ -1,59 +1,62 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import IconsComponent from "../ui/IconsComponent";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
-
-const FeatureList = ({ features }) => {
-  return (
-    <div>
-      <Typography sx={{ color: "text.secondary", mb: "0" }}>
-        Features
-      </Typography>
-      <List>
-        {Object.entries(features).map(([key, value]) => (
-          <li key={key}>
-            &#x2022;
-            <Typography sx={{ color: "text.secondary", mb: "0" }}>
-              {key}: {value}
-            </Typography>
-          </li>
-        ))}
-      </List>
-    </div>
-  );
-};
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
+import DottedList from "./DottedList";
 
 const AttachmentsList = ({ attachments }) => {
   return (
-    <div>
-      <Typography sx={{ color: "text.secondary", mb: "0" }}>
+    <Box sx={{ mb: 2, mt: 0 }}>
+      <Typography
+        sx={{ color: "text.secondary", fontWeight: 500, fontSize: "1rem" }}
+      >
         Attachments
       </Typography>
-      <List>
-        {attachments.length > 0 ? (
-          attachments.map((attachment, index) => (
-            <ListItem key={index} disablePadding>
-              <ListItemButton href={attachment.file_link}>
-                <ListItemIcon>
-                  <IconsComponent icon="attachment" />
-                </ListItemIcon>
-                <ListItemText primary={attachment.file_label} />
-              </ListItemButton>
-            </ListItem>
-          ))
-        ) : (
-          <Typography sx={{ color: "text.secondary" }}>
-            No attachments available
-          </Typography>
-        )}
-      </List>
-    </div>
+      {attachments.length > 0 ? (
+        <List
+          disablePadding
+          sx={{
+            "& .MuiListItem-root": { paddingY: 0.5 }, // Adjust spacing between items
+          }}
+        >
+          {attachments.map((attachment, index) => (
+            <Box
+              key={index}
+              component="li"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                mb: 0,
+                listStyle: "none",
+              }}
+            >
+              <Link
+                href={attachment.file_link}
+                underline="hover"
+                target="_blank"
+              >
+                <IconsComponent icon="attachment" size="16px" />
+                <Typography
+                  component="span"
+                  sx={{ color: "text.secondary", fontWeight: 500 }}
+                >
+                  {attachment.file_label}
+                </Typography>
+              </Link>
+            </Box>
+          ))}
+        </List>
+      ) : (
+        <Typography sx={{ color: "text.secondary", mt: 1 }}>
+          No attachments available
+        </Typography>
+      )}
+    </Box>
   );
 };
 
@@ -79,7 +82,7 @@ const KeywordsList = ({ keywords }) => {
 const ProductDetails = ({ features, attachments, keywords }) => {
   return (
     <>
-      <FeatureList features={features} />
+      <DottedList list={features} title="Features" />
       <AttachmentsList attachments={attachments} />
       <KeywordsList keywords={keywords} />
     </>

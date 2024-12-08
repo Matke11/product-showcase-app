@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 
 const ProductDescription = ({ descriptionShort, descriptionLong }) => {
   return (
-    <Box component="section" sx={{ p: 3 }}>
+    <Box component="section" sx={{ py: 3 }}>
       <Typography
         variant="h6"
         sx={{

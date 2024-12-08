@@ -22,19 +22,17 @@ const StyledTextField = styled(TextField)({
   },
 });
 
-const StyledAddCartButton = styled(Button)({
-  backgroundColor: "red",
+const StyledAddCartButton = styled(Button)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
   color: "white",
   marginLeft: "30px",
   textTransform: "none",
   height: "30px",
-});
+}));
 
 const AddToCart = ({ unit = "PCE" }) => {
   return (
-    <Box
-      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-    >
+    <Box sx={{ display: "flex", alignItems: "center" }}>
       <StyledTextField
         id="outlined-number"
         type="number"

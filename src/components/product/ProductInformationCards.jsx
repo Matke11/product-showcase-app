@@ -7,12 +7,17 @@ import Divider from "@mui/material/Divider";
 
 const ProductInformationCards = ({ title, children }) => {
   return (
-    <Box component="section" sx={{ p: 3 }}>
+    <Box component="section" sx={{ py: 3 }}>
       <Card variant="outlined">
         <CardContent>
           <Typography
-            gutterBottom
-            sx={{ color: "text.secondary", fontSize: 14 }}
+            variant="h6"
+            sx={{
+              textTransform: "uppercase",
+              color: "primary.main",
+              fontSize: "0.75rem",
+              fontWeight: "bold",
+            }}
           >
             {title}
           </Typography>

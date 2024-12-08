@@ -6,11 +6,12 @@ import ProductDetails from "./ProductDetails";
 import ProductInformationCards from "./ProductInformationCards";
 import ProductPricingAndShipping from "./ProductPricingAndShipping";
 import Container from "@mui/material/Container";
+import ProductImages from "./ProductImages";
 
 const Product = ({ data }) => {
   return (
     <>
-      <Container sx={{ mt: "150px" }} maxWidth="xl">
+      <Container sx={{ mt: { xs: "100px", md: "100px" } }} maxWidth="xl">
         <Grid
           container
           spacing={2}
@@ -18,10 +19,10 @@ const Product = ({ data }) => {
             backgroundColor: "white",
           }}
         >
-          <Grid size={{ xs: 6, md: 5 }}>
-            <p>Milan</p>
+          <Grid item size={{ xs: 12, md: 6 }}>
+            <ProductImages images={data.images} />
           </Grid>
-          <Grid size={{ xs: 6, md: 7 }}>
+          <Grid item size={{ xs: 12, md: 6 }}>
             <ProductBasicInformation
               productTitle={data.title}
               currency={data.currency}
@@ -37,16 +38,18 @@ const Product = ({ data }) => {
         </Grid>
       </Container>
       <Container maxWidth="xl">
-        <Grid container spacing={2}>
-          <ProductDescription
-            descriptionShort={data.description_short}
-            descriptionLong={data.description_long}
-          />
+        <Grid container spacing={0}>
+          <Grid item xs={12}>
+            <ProductDescription
+              descriptionShort={data.description_short}
+              descriptionLong={data.description_long}
+            />
+          </Grid>
         </Grid>
       </Container>
       <Container maxWidth="xl">
         <Grid container spacing={2}>
-          <Grid size={{ xs: 6, md: 6 }}>
+          <Grid item size={{ xs: 12, md: 6 }}>
             <ProductInformationCards title="Details">
               <ProductDetails
                 features={data.features}
@@ -55,7 +58,7 @@ const Product = ({ data }) => {
               />
             </ProductInformationCards>
           </Grid>
-          <Grid size={{ xs: 6, md: 6 }}>
+          <Grid item size={{ xs: 12, md: 6 }}>
             <ProductInformationCards title="Price & Shipping">
               <ProductPricingAndShipping
                 priceBreaks={data.price_breaks}

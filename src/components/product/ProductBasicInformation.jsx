@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import { formatPrice } from "../../utils/formatters";
 import { useTheme } from "@mui/material/styles";
 import { Rating } from "@mui/material";
+import Link from "@mui/material/Link";
 
 const ProductTitle = ({ productTitle, supplierLink, supplierName }) => {
   const theme = useTheme();
@@ -30,17 +31,17 @@ const ProductTitle = ({ productTitle, supplierLink, supplierName }) => {
         }}
       >
         by{" "}
-        <a
+        <Link
           href={supplierLink}
           target="_blank"
           style={{
-            color: theme.palette.secondary.main, // Use theme's secondary color
+            color: theme.palette.secondary.main,
             textDecoration: "none",
             fontSize: "0.75rem",
           }}
         >
           {supplierName}
-        </a>
+        </Link>
       </Typography>
     </Box>
   );
@@ -100,8 +101,16 @@ const ProductBasicInformation = ({
   vatPercent,
 }) => {
   return (
-    <Box component="section" sx={{ p: 3 }}>
-      <Stack spacing={2}>
+    <Box
+      component="section"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        position: "relative",
+      }}
+    >
+      <Stack spacing={2} sx={{ minHeight: "100%" }}>
         <ProductTitle
           productTitle={productTitle}
           supplierLink={supplierLink}
@@ -115,9 +124,9 @@ const ProductBasicInformation = ({
           transportCosts={transportCosts}
         />
 
-        <Grid container alignItems="center">
+        <Box sx={{ position: { xs: "static", md: "absolute" }, bottom: 0 }}>
           <AddToCart unit={unit} />
-        </Grid>
+        </Box>
       </Stack>
     </Box>
   );
