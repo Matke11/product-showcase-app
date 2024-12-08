@@ -19,10 +19,10 @@ const Product = ({ data }) => {
             backgroundColor: "white",
           }}
         >
-          <Grid item size={{ xs: 12, md: 6 }}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <ProductImages images={data.images} />
           </Grid>
-          <Grid item size={{ xs: 12, md: 6 }}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <ProductBasicInformation
               productTitle={data.title}
               currency={data.currency}
@@ -39,7 +39,7 @@ const Product = ({ data }) => {
       </Container>
       <Container maxWidth="xl">
         <Grid container spacing={0}>
-          <Grid item xs={12}>
+          <Grid xs={12}>
             <ProductDescription
               descriptionShort={data.description_short}
               descriptionLong={data.description_long}
@@ -49,7 +49,7 @@ const Product = ({ data }) => {
       </Container>
       <Container maxWidth="xl">
         <Grid container spacing={2}>
-          <Grid item size={{ xs: 12, md: 6 }}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <ProductInformationCards title="Details">
               <ProductDetails
                 features={data.features}
@@ -58,7 +58,7 @@ const Product = ({ data }) => {
               />
             </ProductInformationCards>
           </Grid>
-          <Grid item size={{ xs: 12, md: 6 }}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <ProductInformationCards title="Price & Shipping">
               <ProductPricingAndShipping
                 priceBreaks={data.price_breaks}

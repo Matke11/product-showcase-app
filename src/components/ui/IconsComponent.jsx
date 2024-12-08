@@ -1,52 +1,57 @@
 import React from "react";
+import SvgIcon from "@mui/material/SvgIcon";
+import AddSVG from "../../../public/icons/add.svg";
+import CartSVG from "../../../public/icons/cart.svg";
+import DiscountSVG from "../../../public/icons/discount.svg";
+import AttachmentSVG from "../../../public/icons/attachment.svg";
+import FactsSoftSVG from "../../../public/icons/facts-soft.svg";
+import FavoriteFilledSVG from "../../../public/icons/favorite-filled.svg";
+import FavoriteSVG from "../../../public/icons/favorite.svg";
+import PackageSVG from "../../../public/icons/package.svg";
+import StarFilledSVG from "../../../public/icons/star-filled.svg";
+import StarSVG from "../../../public/icons/star.svg";
+import ZoomInSVG from "../../../public/icons/zoom-in.svg";
+import ZoomOutSVG from "../../../public/icons/zoom-out.svg";
 
-const IconsComponent = ({
-  icon,
-  size = "24px",
-  alt = "icon",
-  color = "inherit",
-}) => {
+const IconsComponent = ({ icon, size = "24px", color = "gray" }) => {
   const renderIcon = () => {
     let iconPath;
     switch (icon) {
       case "add":
-        iconPath = "/icons/add.svg"; // Correct path from the public folder
+        iconPath = AddSVG;
         break;
       case "cart":
-        iconPath = "/icons/cart.svg";
+        iconPath = CartSVG;
         break;
       case "discount":
-        iconPath = "/icons/discount.svg";
+        iconPath = DiscountSVG;
         break;
       case "attachment":
-        iconPath = "/icons/attachment.svg";
+        iconPath = AttachmentSVG;
         break;
       case "facts-soft":
-        iconPath = "/icons/facts-soft.svg";
+        iconPath = FactsSoftSVG;
         break;
       case "favorite-filled":
-        iconPath = "/icons/favorite-filled.svg";
-        break;
-      case "favorite-filled":
-        iconPath = "/icons/favorite-filled.svg";
+        iconPath = FavoriteFilledSVG;
         break;
       case "favorite":
-        iconPath = "/icons/favorite.svg";
+        iconPath = FavoriteSVG;
         break;
       case "package":
-        iconPath = "/icons/package.svg";
+        iconPath = PackageSVG;
         break;
       case "star-filled":
-        iconPath = "/icons/star-filled.svg";
+        iconPath = StarFilledSVG;
         break;
       case "star":
-        iconPath = "/icons/star.svg";
+        iconPath = StarSVG;
         break;
       case "zoom-in":
-        iconPath = "/icons/zoom-in.svg";
+        iconPath = ZoomInSVG;
         break;
       case "zoom-out":
-        iconPath = "/icons/zoom-out.svg";
+        iconPath = ZoomOutSVG;
         break;
       default:
         iconPath = "";
@@ -55,18 +60,16 @@ const IconsComponent = ({
   };
 
   return (
-    <span style={{ lineHeight: "0", filter: `hue-rotate(${color})` }}>
-      <img
-        src={renderIcon()}
-        alt={alt}
-        style={{
-          width: size,
-          height: size,
-          fill: color,
-          color: color,
-        }}
-      />
-    </span>
+    <SvgIcon
+      component={renderIcon()}
+      sx={{
+        fontSize: size,
+        color: color,
+        width: size,
+        height: size,
+      }}
+      inheritViewBox
+    />
   );
 };
 

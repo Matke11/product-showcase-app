@@ -9,6 +9,7 @@ import { formatPrice } from "../../utils/formatters";
 import { useTheme } from "@mui/material/styles";
 import { Rating } from "@mui/material";
 import Link from "@mui/material/Link";
+import { orange } from "@mui/material/colors";
 
 const ProductTitle = ({ productTitle, supplierLink, supplierName }) => {
   const theme = useTheme();
@@ -53,8 +54,16 @@ const ProductRating = ({ stars }) => (
       <Rating
         name="customized-rating"
         value={stars}
-        icon={<IconsComponent icon="star-filled" size="18px" />}
-        emptyIcon={<IconsComponent icon="star" size="18px" />}
+        icon={
+          <IconsComponent
+            icon="star-filled"
+            size="18px"
+            color={orange["A400"]}
+          />
+        }
+        emptyIcon={
+          <IconsComponent icon="star-filled" size="18px" color="divider" />
+        }
         sx={{ color: "#ff6d75" }}
         readOnly
       />
@@ -83,8 +92,8 @@ const ProductPrice = ({ price, currency, vatPercent, transportCosts }) => (
       }}
     >
       + {formatPrice(transportCosts)} {currency} shipping{" "}
-      <IconsComponent icon="discount" size="18px" /> all prices incl.{" "}
-      {vatPercent}% taxes
+      <IconsComponent icon="discount" size="18px" color="black" /> all prices
+      incl. {vatPercent}% taxes
     </Typography>
   </Box>
 );

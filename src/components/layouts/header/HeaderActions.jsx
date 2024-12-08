@@ -22,9 +22,6 @@ const HeaderActions = ({ cart, user }) => {
         display: "flex",
         alignItems: "center",
         borderRadius: 1,
-        "& svg": {
-          m: 1,
-        },
         [`& .${dividerClasses.root}`]: {
           mx: 2,
         },

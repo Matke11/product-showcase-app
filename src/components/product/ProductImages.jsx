@@ -26,7 +26,7 @@ const ProductImages = ({ images }) => {
         }}
       >
         {images.map((image, index) => (
-          <Grid item key={index}>
+          <Grid key={index}>
             <img
               src={image}
               alt={image}

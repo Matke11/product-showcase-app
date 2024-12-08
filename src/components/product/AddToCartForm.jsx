@@ -50,7 +50,7 @@ const AddToCart = ({ unit = "PCE" }) => {
         {unit}
       </Typography>
       <StyledAddCartButton>
-        <IconsComponent icon="add" size="20px" />
+        <IconsComponent icon="add" size="20px" color="white" />
         Add to cart
       </StyledAddCartButton>
     </Box>
