@@ -17,44 +17,44 @@ const IconsComponent = ({ icon, size = "24px", color = "gray" }) => {
   const renderIcon = () => {
     let iconPath;
     switch (icon) {
-      case "add":
-        iconPath = AddSVG;
-        break;
-      case "cart":
-        iconPath = CartSVG;
-        break;
-      case "discount":
-        iconPath = DiscountSVG;
-        break;
-      case "attachment":
-        iconPath = AttachmentSVG;
-        break;
-      case "facts-soft":
-        iconPath = FactsSoftSVG;
-        break;
-      case "favorite-filled":
-        iconPath = FavoriteFilledSVG;
-        break;
-      case "favorite":
-        iconPath = FavoriteSVG;
-        break;
-      case "package":
-        iconPath = PackageSVG;
-        break;
-      case "star-filled":
-        iconPath = StarFilledSVG;
-        break;
-      case "star":
-        iconPath = StarSVG;
-        break;
-      case "zoom-in":
-        iconPath = ZoomInSVG;
-        break;
-      case "zoom-out":
-        iconPath = ZoomOutSVG;
-        break;
-      default:
-        iconPath = "";
+    case "add":
+      iconPath = AddSVG;
+      break;
+    case "cart":
+      iconPath = CartSVG;
+      break;
+    case "discount":
+      iconPath = DiscountSVG;
+      break;
+    case "attachment":
+      iconPath = AttachmentSVG;
+      break;
+    case "facts-soft":
+      iconPath = FactsSoftSVG;
+      break;
+    case "favorite-filled":
+      iconPath = FavoriteFilledSVG;
+      break;
+    case "favorite":
+      iconPath = FavoriteSVG;
+      break;
+    case "package":
+      iconPath = PackageSVG;
+      break;
+    case "star-filled":
+      iconPath = StarFilledSVG;
+      break;
+    case "star":
+      iconPath = StarSVG;
+      break;
+    case "zoom-in":
+      iconPath = ZoomInSVG;
+      break;
+    case "zoom-out":
+      iconPath = ZoomOutSVG;
+      break;
+    default:
+      iconPath = "";
     }
     return iconPath;
   };

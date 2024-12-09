@@ -7,7 +7,7 @@ import IconsComponent from "../../ui/IconsComponent";
 import { useCartContext } from "../../context/CartContext";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-const StyledBadge = styled(Badge)(({ theme }) => ({
+const StyledBadge = styled(Badge)({
   "& .MuiBadge-badge": {
     padding: "0",
     minWidth: "15px",
@@ -18,7 +18,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge.animate": {
     transform: "scale(1.5)",
   },
-}));
+});
 
 const HeaderActions = ({ user }) => {
   const { cartData, animate, headerAddToCartVisible } = useCartContext();

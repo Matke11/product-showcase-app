@@ -1,7 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
+    mode: 'production',
 
     entry: './src/index.js',
 
@@ -12,7 +14,7 @@ module.exports = {
     },
 
     resolve: {
-        extensions: ['.js', '.jsx'],  // Add '.jsx' here
+        extensions: ['.js', '.jsx'],
     },
 
     devServer: {
@@ -27,8 +29,9 @@ module.exports = {
             filename: 'index.html',
             template: './public/index.html',
         }),
+        new BundleAnalyzerPlugin(),
     ],
-
+    
     module: {
         rules: [
             {

@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import data from '../../data/data.json';
+import React, { createContext, useContext, useState } from "react";
+import data from "../../data/data.json";
 
 const CartContext = createContext();
 
@@ -20,14 +20,24 @@ export const CartContextProvider = ({ children }) => {
     }));
     setAnimate(true);
     setTimeout(() => setAnimate(false), 300);
-  }
+  };
 
   const updateQuantity = (newQuantity) => {
     setQuantity(newQuantity);
   };
 
   return (
-    <CartContext.Provider value={{ cartData, handleAddToCart, updateQuantity, quantity, animate, headerAddToCartVisible, setHeaderAddToCartVisible }}>
+    <CartContext.Provider
+      value={{
+        cartData,
+        handleAddToCart,
+        updateQuantity,
+        quantity,
+        animate,
+        headerAddToCartVisible,
+        setHeaderAddToCartVisible,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

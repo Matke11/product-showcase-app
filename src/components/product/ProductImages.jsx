@@ -7,10 +7,6 @@ const ProductImages = ({ images }) => {
   const [selectedImage, setSelectedImage] = useState(images[0]);
   const [imageError, setImageError] = useState(false);
 
-  const handleSelectImage = (image) => {
-    setSelectedImage(image);
-  };
-
   const renderImage = (imageSrc) => {
     return imageError ? (
       <Box
@@ -30,7 +26,7 @@ const ProductImages = ({ images }) => {
       <img
         src={imageSrc}
         alt={imageSrc}
-        onClick={() => handleSelectImage(image)}
+        onClick={() => setSelectedImage(imageSrc)}
         style={{
           width: "80px",
           height: "80px",
