@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Box } from "@mui/material";
+import React from "react";
+import { Box, Divider } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import Divider, { dividerClasses } from "@mui/material/Divider";
+import Badge from "@mui/material/Badge";
 import AddToCart from "../../product/AddToCartForm";
 import IconsComponent from "../../ui/IconsComponent";
-import Badge from "@mui/material/Badge";
 import { useCartContext } from "../../context/CartContext";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -21,42 +21,49 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 const HeaderActions = ({ user }) => {
-  const { cartData, animate } = useCartContext();
+  const { cartData, animate, headerAddToCartVisible } = useCartContext();
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   return (
     <Box
       sx={{
         display: "flex",
-        alignItems: "center",
-        borderRadius: 1,
-        [`& .${dividerClasses.root}`]: {
-          mx: 2,
-        },
+        flexDirection: isMobile ? "column" : "row",
+        alignItems: isMobile ? "stretch" : "center",
+        gap: isMobile ? 2 : 0,
       }}
     >
-      <Box sx={{ mr: 4 }}>
-        <AddToCart />
-      </Box>
+      {headerAddToCartVisible && (
+        <Box
+          sx={{
+            width: isMobile ? "100%" : "auto",
+            display: "flex",
+            justifyContent: isMobile ? "center" : "flex-start",
+            mr: isMobile ? 0 : 4,
+          }}
+        >
+          <AddToCart />
+        </Box>
+      )}
+
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: isMobile ? "space-around" : "space-between",
           alignItems: "center",
         }}
       >
         <StyledBadge
           badgeContent={user.favorite_articles.length}
           color="primary"
-          sx={{
-            mr: 1,
-          }}
+          sx={{ mr: isMobile ? 0 : 1 }}
         >
           <IconsComponent icon="favorite" size="18px" />
         </StyledBadge>
         <IconsComponent icon="facts-soft" />
-      </Box>
-      <Divider orientation="vertical" flexItem />
-      <Box>
+        {!isMobile && (
+          <Divider orientation={"vertical"} flexItem sx={{ mx: 1 }} />
+        )}
         <StyledBadge
           badgeContent={cartData.items}
           color="primary"

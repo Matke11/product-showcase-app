@@ -21,7 +21,7 @@ const ProductInformationCards = ({ title, children }) => {
           >
             {title}
           </Typography>
-          <Divider />
+          <Divider sx={{ mt: 2 }} />
           <div>{children}</div>
         </CardContent>
       </Card>

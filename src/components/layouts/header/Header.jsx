@@ -1,7 +1,16 @@
 import * as React from "react";
-import { AppBar, Toolbar, Typography } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Box,
+  Drawer,
+  CssBaseline,
+} from "@mui/material";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
-import CssBaseline from "@mui/material/CssBaseline";
+import MenuIcon from "@mui/icons-material/Menu";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import HeaderActions from "./HeaderActions";
 
 const ElevationScroll = ({ children }) => {
@@ -16,6 +25,22 @@ const ElevationScroll = ({ children }) => {
 };
 
 const Header = ({ userData, productTitle }) => {
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+
+  const handleDrawerToggle = () => {
+    setMobileOpen((prevState) => !prevState);
+  };
+
+  const drawer = (
+    <Box sx={{ textAlign: "center" }}>
+      <Typography variant="h6" sx={{ my: 2 }}>
+        {productTitle}
+      </Typography>
+      <HeaderActions user={userData} />
+    </Box>
+  );
+
   return (
     <>
       <CssBaseline />
@@ -31,17 +56,54 @@ const Header = ({ userData, productTitle }) => {
             sx={{
               display: "flex",
               justifyContent: "space-between",
+              alignItems: "center",
             }}
             variant="dense"
           >
-            <Typography variant="h6" component="div" color="primary">
-              {productTitle}
-            </Typography>
+            {isMobile ? (
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                onClick={handleDrawerToggle}
+                sx={{ display: { sm: "none" } }}
+              >
+                <MenuIcon sx={{ color: "gray" }} />
+              </IconButton>
+            ) : (
+              <Typography
+                variant="h6"
+                component="div"
+                color="primary"
+                sx={{
+                  overflow: "hidden",
+                  whiteSpace: "nowrap",
+                  textOverflow: "ellipsis",
+                  mr: "20px",
+                }}
+              >
+                {productTitle}
+              </Typography>
+            )}
 
-            <HeaderActions user={userData} />
+            {!isMobile && <HeaderActions user={userData} />}
           </Toolbar>
         </AppBar>
       </ElevationScroll>
+
+      <Drawer
+        anchor="left"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        sx={{
+          display: { xs: "block", sm: "none" },
+          "& .MuiDrawer-paper": {
+            width: 240,
+          },
+        }}
+      >
+        {drawer}
+      </Drawer>
     </>
   );
 };

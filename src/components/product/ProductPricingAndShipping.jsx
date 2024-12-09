@@ -25,25 +25,44 @@ const ProductPricingAndShipping = ({
   return (
     <Box component="section">
       <DottedList list={listObject} />
-      <Box sx={{ mt: 4 }}>
+      <Box
+        sx={{
+          mt: 4,
+        }}
+      >
         <Typography sx={{ color: "text.secondary", mb: "0" }}>
           Price breaks
         </Typography>
-        <List>
-          {Object.entries(priceBreaks).map(([quantity, totalPrice]) => {
-            const unitPrice = (totalPrice / quantity).toFixed(2);
-            return (
-              <Box key={quantity}>
-                <ListItem disablePadding>
-                  <ListItemText primary={`ex ${quantity} ${unit}`} />
-                  <ListItemText
-                    primary={`${formatPrice(unitPrice)} ${currency}/${unit}`}
-                  />
-                </ListItem>
-                <Divider />
-              </Box>
-            );
-          })}
+        <List
+          sx={{
+            display: "inline-flex",
+            flexDirection: "column",
+          }}
+        >
+          {Object.entries(priceBreaks).map(
+            ([quantity, totalPrice], index, value) => {
+              const unitPrice = (totalPrice / quantity).toFixed(2);
+              return (
+                <Box key={quantity}>
+                  <Divider />
+                  <ListItem
+                    sx={{
+                      py: 0,
+                      display: "flex",
+                      gap: { sm: 1, md: 4 },
+                      textAlign: "right",
+                    }}
+                  >
+                    <ListItemText primary={`ex ${quantity} ${unit}`} />
+                    <ListItemText
+                      primary={`${formatPrice(unitPrice)} ${currency}/${unit}`}
+                    />
+                  </ListItem>
+                  {value.length === index + 1 && <Divider />}
+                </Box>
+              );
+            }
+          )}
         </List>
       </Box>
     </Box>

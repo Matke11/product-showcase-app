@@ -11,6 +11,7 @@ export const CartContextProvider = ({ children }) => {
   const [cartData, setCartData] = useState(data.cart);
   const [quantity, setQuantity] = useState(1);
   const [animate, setAnimate] = useState(false);
+  const [headerAddToCartVisible, setHeaderAddToCartVisible] = useState(false);
 
   const handleAddToCart = () => {
     setCartData((prevCartData) => ({
@@ -26,7 +27,7 @@ export const CartContextProvider = ({ children }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cartData, handleAddToCart, updateQuantity, quantity, animate }}>
+    <CartContext.Provider value={{ cartData, handleAddToCart, updateQuantity, quantity, animate, headerAddToCartVisible, setHeaderAddToCartVisible }}>
       {children}
     </CartContext.Provider>
   );

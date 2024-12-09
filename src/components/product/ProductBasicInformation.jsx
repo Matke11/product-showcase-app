@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import IconsComponent from "../ui/IconsComponent";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid2";
@@ -10,6 +10,7 @@ import { useTheme } from "@mui/material/styles";
 import { Rating } from "@mui/material";
 import Link from "@mui/material/Link";
 import { orange } from "@mui/material/colors";
+import { useCartContext } from "../context/CartContext";
 
 const ProductTitle = ({ productTitle, supplierLink, supplierName }) => {
   const theme = useTheme();
@@ -108,6 +109,28 @@ const ProductBasicInformation = ({
   transportCosts,
   vatPercent,
 }) => {
+  const { setHeaderAddToCartVisible } = useCartContext();
+  const addToCartRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setHeaderAddToCartVisible(!entry.isIntersecting);
+      },
+      { threshold: 0 }
+    );
+
+    if (addToCartRef.current) {
+      observer.observe(addToCartRef.current);
+    }
+
+    return () => {
+      if (addToCartRef.current) {
+        observer.unobserve(addToCartRef.current);
+      }
+    };
+  }, [setHeaderAddToCartVisible]);
+
   return (
     <Box
       component="section"
@@ -132,7 +155,10 @@ const ProductBasicInformation = ({
           transportCosts={transportCosts}
         />
 
-        <Box sx={{ position: { xs: "static", md: "absolute" }, bottom: 0 }}>
+        <Box
+          sx={{ position: { xs: "static", md: "absolute" }, bottom: 0 }}
+          ref={addToCartRef}
+        >
           <AddToCart unit={unit} />
         </Box>
       </Stack>

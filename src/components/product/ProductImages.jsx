@@ -1,45 +1,70 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
 import Grid from "@mui/material/Grid2";
+import IconsComponent from "../ui/IconsComponent";
 
 const ProductImages = ({ images }) => {
   const [selectedImage, setSelectedImage] = useState(images[0]);
+  const [imageError, setImageError] = useState(false);
 
   const handleSelectImage = (image) => {
     setSelectedImage(image);
   };
 
+  const renderImage = (imageSrc) => {
+    return imageError ? (
+      <Box
+        sx={{
+          border: "1px solid #ddd",
+          width: "80px",
+          height: "80px",
+          objectFit: "cover",
+          alignItems: "center",
+          justifyContent: "center",
+          display: "flex",
+        }}
+      >
+        <IconsComponent icon="package" size="36px" color="divider" />
+      </Box>
+    ) : (
+      <img
+        src={imageSrc}
+        alt={imageSrc}
+        onClick={() => handleSelectImage(image)}
+        style={{
+          width: "80px",
+          height: "80px",
+          objectFit: "cover",
+          cursor: "pointer",
+          border:
+            selectedImage === imageSrc ? "2px solid #007BFF" : "1px solid gray",
+          borderRadius: 0,
+        }}
+        onError={() => setImageError(true)}
+      />
+    );
+  };
+
+  const filteredImages = images.filter((image) => image !== selectedImage);
+
   return (
     <Box
       sx={{
         display: "flex",
-        gap: 0.5,
+        gap: 1,
       }}
     >
       <Grid
         container
         direction="column"
-        spacing={0.5}
+        spacing={1}
         sx={{
           maxWidth: "100px",
+          minHeight: "350px",
         }}
       >
-        {images.map((image, index) => (
-          <Grid key={index}>
-            <img
-              src={image}
-              alt={image}
-              style={{
-                width: "80px",
-                height: "80px",
-                objectFit: "cover",
-                cursor: "pointer",
-                border: selectedImage === image ? "2px solid #007BFF" : "none",
-                borderRadius: "8px",
-              }}
-              onClick={() => handleSelectImage(image)}
-            />
-          </Grid>
+        {filteredImages.map((image, index) => (
+          <Grid key={index}>{renderImage(image)}</Grid>
         ))}
       </Grid>
 
@@ -48,15 +73,25 @@ const ProductImages = ({ images }) => {
           flex: 1,
           maxWidth: "100%",
           border: "1px solid #ddd",
-          borderRadius: "8px",
           overflow: "hidden",
+          alignItems: "center",
+          justifyContent: "center",
+          display: "flex",
+          position: "relative",
         }}
       >
-        <img
-          src={selectedImage}
-          alt={selectedImage}
-          style={{ width: "100%", height: "auto", objectFit: "contain" }}
-        />
+        {imageError ? (
+          <IconsComponent icon="package" size="10rem" color="divider" />
+        ) : (
+          <img
+            src={selectedImage}
+            alt={selectedImage}
+            style={{ width: "100%", height: "auto", objectFit: "contain" }}
+          />
+        )}
+        <Box sx={{ position: "absolute", bottom: "0px", right: "10px" }}>
+          <IconsComponent icon="zoom-in" size="1rem" color="gray" />
+        </Box>
       </Box>
     </Box>
   );

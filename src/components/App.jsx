@@ -7,6 +7,15 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { pink, purple } from "@mui/material/colors";
 
 const theme = createTheme({
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          backgroundColor: "#EFEFEF",
+        },
+      },
+    },
+  },
   palette: {
     primary: {
       main: pink["A400"],

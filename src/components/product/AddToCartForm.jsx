@@ -29,6 +29,7 @@ const StyledAddCartButton = styled(Button)(({ theme }) => ({
   marginLeft: "30px",
   textTransform: "none",
   height: "30px",
+  whiteSpace: "nowrap",
 }));
 
 const AddToCart = ({ unit = "PCE" }) => {
