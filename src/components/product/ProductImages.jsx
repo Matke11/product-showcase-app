@@ -3,11 +3,16 @@ import { Box } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import IconsComponent from "../ui/IconsComponent";
 
-const ProductImages = ({ images }) => {
-  const [selectedImage, setSelectedImage] = useState(images[0]);
+const ProductImages = ({ images = [] }) => {
+  const [selectedImage, setSelectedImage] = useState(images ? images[0] : null);
   const [imageError, setImageError] = useState(false);
 
-  const renderImage = (imageSrc) => {
+  const handleSelectImage = (image) => {
+    setImageError(false);
+    setSelectedImage(image);
+  };
+
+  const renderImage = (imageSrc, index) => {
     return imageError ? (
       <Box
         sx={{
@@ -25,8 +30,8 @@ const ProductImages = ({ images }) => {
     ) : (
       <img
         src={imageSrc}
-        alt={imageSrc}
-        onClick={() => setSelectedImage(imageSrc)}
+        onClick={() => handleSelectImage(imageSrc)}
+        alt={`Product image ${index + 1}`}
         style={{
           width: "80px",
           height: "80px",
@@ -41,7 +46,7 @@ const ProductImages = ({ images }) => {
     );
   };
 
-  const filteredImages = images.filter((image) => image !== selectedImage);
+  const filteredImages = images?.filter((image) => image !== selectedImage);
 
   return (
     <Box
@@ -59,8 +64,8 @@ const ProductImages = ({ images }) => {
           minHeight: "350px",
         }}
       >
-        {filteredImages.map((image, index) => (
-          <Grid key={index}>{renderImage(image)}</Grid>
+        {filteredImages?.map((image, index) => (
+          <Grid key={index}>{renderImage(image, index)}</Grid>
         ))}
       </Grid>
 
@@ -76,7 +81,7 @@ const ProductImages = ({ images }) => {
           position: "relative",
         }}
       >
-        {imageError ? (
+        {imageError || !filteredImages || filteredImages?.length === 0 ? (
           <IconsComponent icon="package" size="10rem" color="divider" />
         ) : (
           <img

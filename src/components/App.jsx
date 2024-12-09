@@ -27,14 +27,14 @@ const theme = createTheme({
 });
 
 function App() {
-  const articleData = data.article;
+  const productData = data.article;
   const userData = data.user;
-  const productTitle = articleData.title;
+  const productTitle = productData.title;
   return (
     <ThemeProvider theme={theme}>
       <CartContextProvider>
         <Header productTitle={productTitle} userData={userData} />
-        <Product productData={articleData} />
+        <Product productData={productData} />
       </CartContextProvider>
     </ThemeProvider>
   );

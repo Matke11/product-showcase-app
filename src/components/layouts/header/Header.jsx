@@ -24,7 +24,7 @@ const ElevationScroll = ({ children }) => {
   });
 };
 
-const Header = ({ userData, productTitle }) => {
+const Header = ({ userData = {}, productTitle = "Product" }) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
@@ -68,7 +68,7 @@ const Header = ({ userData, productTitle }) => {
                 onClick={handleDrawerToggle}
                 sx={{ display: { sm: "none" } }}
               >
-                <MenuIcon sx={{ color: "gray" }} />
+                <MenuIcon sx={{ color: "text.secondary" }} />
               </IconButton>
             ) : (
               <Typography

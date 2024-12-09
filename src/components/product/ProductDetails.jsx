@@ -16,7 +16,7 @@ const AttachmentsList = ({ attachments }) => {
       >
         Attachments
       </Typography>
-      {attachments.length > 0 ? (
+      {attachments && attachments.length > 0 ? (
         <List
           disablePadding
           sx={{
@@ -36,7 +36,7 @@ const AttachmentsList = ({ attachments }) => {
               }}
             >
               <Link
-                href={attachment.file_link}
+                href={attachment?.file_link}
                 underline="hover"
                 target="_blank"
               >
@@ -45,7 +45,7 @@ const AttachmentsList = ({ attachments }) => {
                   component="span"
                   sx={{ color: "text.secondary", fontWeight: 500 }}
                 >
-                  {attachment.file_label}
+                  {attachment?.file_label}
                 </Typography>
               </Link>
             </Box>
@@ -62,12 +62,12 @@ const AttachmentsList = ({ attachments }) => {
 
 const KeywordsList = ({ keywords }) => {
   return (
-    <div>
+    <Box>
       <Typography sx={{ color: "text.secondary", mb: "0" }}>
         Keywords
       </Typography>
       <Stack direction="row" spacing={1}>
-        {keywords.length > 0 ? (
+        {keywords && keywords.length > 0 ? (
           keywords.map((keyword, index) => <Chip label={keyword} key={index} />)
         ) : (
           <Typography sx={{ color: "text.secondary" }}>
@@ -75,7 +75,7 @@ const KeywordsList = ({ keywords }) => {
           </Typography>
         )}
       </Stack>
-    </div>
+    </Box>
   );
 };
 

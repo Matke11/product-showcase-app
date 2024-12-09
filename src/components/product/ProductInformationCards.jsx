@@ -10,18 +10,22 @@ const ProductInformationCards = ({ title, children }) => {
     <Box component="section" sx={{ py: 3 }}>
       <Card variant="outlined">
         <CardContent>
-          <Typography
-            variant="h6"
-            sx={{
-              textTransform: "uppercase",
-              color: "primary.main",
-              fontSize: "0.75rem",
-              fontWeight: "bold",
-            }}
-          >
-            {title}
-          </Typography>
-          <Divider sx={{ mt: 2 }} />
+          {title && (
+            <>
+              <Typography
+                variant="h6"
+                sx={{
+                  textTransform: "uppercase",
+                  color: "primary.main",
+                  fontSize: "0.75rem",
+                  fontWeight: "bold",
+                }}
+              >
+                {title}
+              </Typography>
+              <Divider sx={{ mt: 2 }} />
+            </>
+          )}
           <div>{children}</div>
         </CardContent>
       </Card>

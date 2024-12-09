@@ -20,6 +20,40 @@ const StyledBadge = styled(Badge)({
   },
 });
 
+const HeaderIcons = ({
+  animate,
+  isMobile,
+  numberOfFavoriteArticles,
+  numberOfCartItems,
+}) => (
+  <Box
+    sx={{
+      display: "flex",
+      justifyContent: isMobile ? "space-around" : "space-between",
+      alignItems: "center",
+    }}
+  >
+    <StyledBadge
+      badgeContent={numberOfFavoriteArticles}
+      color="primary"
+      sx={{ mr: isMobile ? 0 : 1 }}
+    >
+      <IconsComponent icon="favorite" size="18px" />
+    </StyledBadge>
+    <IconsComponent icon="facts-soft" />
+    {!isMobile && <Divider orientation={"vertical"} flexItem sx={{ mx: 1 }} />}
+    <StyledBadge
+      badgeContent={numberOfCartItems}
+      color="primary"
+      classes={{
+        badge: animate ? "MuiBadge-badge animate" : "MuiBadge-badge",
+      }}
+    >
+      <IconsComponent icon="cart" size="18px" />
+    </StyledBadge>
+  </Box>
+);
+
 const HeaderActions = ({ user }) => {
   const { cartData, animate, headerAddToCartVisible } = useCartContext();
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
@@ -46,34 +80,12 @@ const HeaderActions = ({ user }) => {
         </Box>
       )}
 
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: isMobile ? "space-around" : "space-between",
-          alignItems: "center",
-        }}
-      >
-        <StyledBadge
-          badgeContent={user.favorite_articles.length}
-          color="primary"
-          sx={{ mr: isMobile ? 0 : 1 }}
-        >
-          <IconsComponent icon="favorite" size="18px" />
-        </StyledBadge>
-        <IconsComponent icon="facts-soft" />
-        {!isMobile && (
-          <Divider orientation={"vertical"} flexItem sx={{ mx: 1 }} />
-        )}
-        <StyledBadge
-          badgeContent={cartData.items}
-          color="primary"
-          classes={{
-            badge: animate ? "MuiBadge-badge animate" : "MuiBadge-badge",
-          }}
-        >
-          <IconsComponent icon="cart" size="18px" />
-        </StyledBadge>
-      </Box>
+      <HeaderIcons
+        animate={animate}
+        isMobile={isMobile}
+        numberOfCartItems={cartData?.items}
+        numberOfFavoriteArticles={user?.favorite_articles?.length}
+      />
     </Box>
   );
 };

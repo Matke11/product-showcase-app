@@ -13,13 +13,13 @@ const ProductPricingAndShipping = ({
   minimumOrder,
   shippingCost,
   deliveryTime,
-  currency,
-  unit,
+  currency = "EUR",
+  unit = "PCE",
 }) => {
   const listObject = {
-    "Minimum order": `${minimumOrder} ${unit}`,
-    Shipping: `${formatPrice(shippingCost)} ${currency}`,
-    Delivery: `${deliveryTime} days`,
+    "Minimum order": `${minimumOrder ? minimumOrder : "/"} ${unit}`,
+    Shipping: `${shippingCost ? formatPrice(shippingCost) : "/"} ${currency}`,
+    Delivery: `${deliveryTime ? deliveryTime : "/"} days`,
   };
 
   return (
@@ -39,30 +39,34 @@ const ProductPricingAndShipping = ({
             flexDirection: "column",
           }}
         >
-          {Object.entries(priceBreaks).map(
-            ([quantity, totalPrice], index, value) => {
-              const unitPrice = (totalPrice / quantity).toFixed(2);
-              return (
-                <Box key={quantity}>
-                  <Divider />
-                  <ListItem
-                    sx={{
-                      py: 0,
-                      display: "flex",
-                      gap: { sm: 1, md: 4 },
-                      textAlign: "right",
-                    }}
-                  >
-                    <ListItemText primary={`ex ${quantity} ${unit}`} />
-                    <ListItemText
-                      primary={`${formatPrice(unitPrice)} ${currency}/${unit}`}
-                    />
-                  </ListItem>
-                  {value.length === index + 1 && <Divider />}
-                </Box>
-              );
-            }
-          )}
+          {priceBreaks && Object.keys(priceBreaks).length > 0
+            ? Object.entries(priceBreaks).map(
+                ([quantity, totalPrice], index, value) => {
+                  const unitPrice = (totalPrice / quantity).toFixed(2);
+                  return (
+                    <Box key={quantity}>
+                      <Divider />
+                      <ListItem
+                        sx={{
+                          py: 0,
+                          display: "flex",
+                          gap: { sm: 1, md: 4 },
+                          textAlign: "right",
+                        }}
+                      >
+                        <ListItemText
+                          primary={`ex ${quantity ? quantity : "/"} ${unit}`}
+                        />
+                        <ListItemText
+                          primary={`${unitPrice ? formatPrice(unitPrice) : "/"} ${currency}/${unit}`}
+                        />
+                      </ListItem>
+                      {value.length === index + 1 && <Divider />}
+                    </Box>
+                  );
+                }
+              )
+            : "No price break information"}
         </List>
       </Box>
     </Box>

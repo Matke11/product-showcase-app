@@ -13,39 +13,45 @@ const DottedList = ({ list, title }) => {
           {title}
         </Typography>
       )}
-      <List sx={{ paddingLeft: 1, paddingTop: 0 }}>
-        {Object.entries(list).map(([key, value]) => (
-          <Box
-            key={key}
-            component="li"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 1,
-              mb: 0,
-              listStyle: "none",
-            }}
-          >
+      {list ? (
+        <List sx={{ paddingLeft: 1, paddingTop: 0 }}>
+          {Object.entries(list).map(([key, value]) => (
             <Box
+              key={key}
+              component="li"
               sx={{
-                width: "5px",
-                height: "5px",
-                backgroundColor: "black",
-                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                mb: 0,
+                listStyle: "none",
               }}
-            />
-            <Typography
-              component="span"
-              sx={{ color: "text.secondary", fontWeight: 500 }}
             >
-              {key}:
-            </Typography>
-            <Typography component="span" sx={{ color: "text.primary" }}>
-              {value}
-            </Typography>
-          </Box>
-        ))}
-      </List>
+              <Box
+                sx={{
+                  width: "5px",
+                  height: "5px",
+                  backgroundColor: "black",
+                  borderRadius: "50%",
+                }}
+              />
+              <Typography
+                component="span"
+                sx={{ color: "text.secondary", fontWeight: 500 }}
+              >
+                {key}:
+              </Typography>
+              <Typography component="span" sx={{ color: "text.primary" }}>
+                {value}
+              </Typography>
+            </Box>
+          ))}
+        </List>
+      ) : title ? (
+        `No ${title} available`
+      ) : (
+        ""
+      )}
     </Box>
   );
 };

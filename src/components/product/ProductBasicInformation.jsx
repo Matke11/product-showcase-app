@@ -23,33 +23,35 @@ const ProductTitle = ({ productTitle, supplierLink, supplierName }) => {
           fontSize: "1rem",
         }}
       >
-        {productTitle}
+        {productTitle ? productTitle : "Product title unavailable"}
       </Typography>
-      <Typography
-        variant="body2"
-        component="span"
-        sx={{
-          color: "gray",
-        }}
-      >
-        by{" "}
-        <Link
-          href={supplierLink}
-          target="_blank"
-          style={{
-            color: theme.palette.secondary.main,
-            textDecoration: "none",
-            fontSize: "0.75rem",
+      {supplierLink && (
+        <Typography
+          variant="body2"
+          component="span"
+          sx={{
+            color: "gray",
           }}
         >
-          {supplierName}
-        </Link>
-      </Typography>
+          by{" "}
+          <Link
+            href={supplierLink}
+            target="_blank"
+            style={{
+              color: theme.palette.secondary.main,
+              textDecoration: "none",
+              fontSize: "0.75rem",
+            }}
+          >
+            {supplierName ? supplierName : "Supplier name unavailable"}
+          </Link>
+        </Typography>
+      )}
     </Box>
   );
 };
 
-const ProductRating = ({ stars }) => (
+const ProductRating = ({ stars = 0 }) => (
   <Box>
     <Grid container spacing={1}>
       <Rating
@@ -71,7 +73,12 @@ const ProductRating = ({ stars }) => (
   </Box>
 );
 
-const ProductPrice = ({ price, currency, vatPercent, transportCosts }) => (
+const ProductPrice = ({
+  price,
+  currency = "EUR",
+  vatPercent,
+  transportCosts,
+}) => (
   <Box>
     <Typography
       variant="body1"
@@ -81,7 +88,7 @@ const ProductPrice = ({ price, currency, vatPercent, transportCosts }) => (
         display: "inline",
       }}
     >
-      {formatPrice(price)} {currency}
+      {price ? formatPrice(price) : "Price unavailable"} {currency}
     </Typography>{" "}
     <Typography
       variant="body2"
@@ -91,9 +98,15 @@ const ProductPrice = ({ price, currency, vatPercent, transportCosts }) => (
         display: "inline",
       }}
     >
-      + {formatPrice(transportCosts)} {currency} shipping{" "}
-      <IconsComponent icon="discount" size="18px" color="black" /> all prices
-      incl. {vatPercent}% taxes
+      +{" "}
+      {transportCosts
+        ? formatPrice(transportCosts)
+        : "Shipping cost unavailable"}{" "}
+      {currency} shipping{" "}
+      <IconsComponent icon="discount" size="18px" color="black" />{" "}
+      {vatPercent &&
+        `all prices
+      incl. ${vatPercent}% taxes`}
     </Typography>
   </Box>
 );

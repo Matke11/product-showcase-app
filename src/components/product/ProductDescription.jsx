@@ -17,12 +17,18 @@ const ProductDescription = ({ descriptionShort, descriptionLong }) => {
         Description
       </Typography>
 
-      <Typography variant="body2" sx={{ marginBottom: 1 }}>
-        {descriptionShort}
-      </Typography>
-      <Typography variant="body2" sx={{ marginTop: 1 }}>
-        {descriptionLong}
-      </Typography>
+      {descriptionShort || descriptionLong ? (
+        <>
+          <Typography variant="body2" sx={{ marginBottom: 1 }}>
+            {descriptionShort}
+          </Typography>
+          <Typography variant="body2" sx={{ marginTop: 1 }}>
+            {descriptionLong}
+          </Typography>
+        </>
+      ) : (
+        "No description for this product"
+      )}
     </Box>
   );
 };
