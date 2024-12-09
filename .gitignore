@@ -29,15 +29,6 @@ Thumbs.db
 *.njsproj
 *.sln
 
-# Babel cache
-.babelrc
-.babelrc.js
-.babelrc.cjs
-.babelrc.json
-babel.config.js
-babel.config.cjs
-babel.config.json
-
 # Webpack cache
 .cache/
 *.webpack-cache
