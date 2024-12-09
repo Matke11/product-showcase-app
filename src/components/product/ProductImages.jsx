@@ -53,21 +53,23 @@ const ProductImages = ({ images = [] }) => {
       sx={{
         display: "flex",
         gap: 1,
+        flexDirection: { xs: "column", sm: "row" },
       }}
     >
-      <Grid
-        container
-        direction="column"
-        spacing={1}
+      <Box
         sx={{
-          maxWidth: "100px",
-          minHeight: "350px",
+          order: { xs: 2, sm: 1 },
+          display: "flex",
+          flexDirection: { sm: "column", xs: "row" },
+          gap: 1,
+          maxWidth: { xs: "100%", sm: "100px" },
+          minHeight: { sm: "350px" },
         }}
       >
         {filteredImages?.map((image, index) => (
           <Grid key={index}>{renderImage(image, index)}</Grid>
         ))}
-      </Grid>
+      </Box>
 
       <Box
         sx={{
@@ -79,6 +81,7 @@ const ProductImages = ({ images = [] }) => {
           justifyContent: "center",
           display: "flex",
           position: "relative",
+          order: { xs: 1, sm: 2 },
         }}
       >
         {imageError || !filteredImages || filteredImages?.length === 0 ? (
